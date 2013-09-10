@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent" >
+
     <com.games.spaceman.SpaceView
-      android:id="@+id/space"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:keepScreenOn="true"/>
+        android:id="@+id/space"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:keepScreenOn="true" />
 
     <LinearLayout
         android:id="@+id/linearLayoutVertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" android:background="@drawable/grayingout">
+        android:background="@drawable/grayingout"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="center_horizontal" android:layout_marginTop="50dip">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dip"
+            android:gravity="center_horizontal" >
 
             <Button
                 android:id="@+id/button_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_play"/>
+                android:background="@drawable/button_play" />
 
             <Button
                 android:id="@+id/button_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_list" android:layout_marginLeft="40dip" android:layout_marginRight="40dip"/>
+                android:layout_marginLeft="40dip"
+                android:layout_marginRight="40dip"
+                android:background="@drawable/button_list" />
 
             <Button
                 android:id="@+id/button_help"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_help"/>
-
+                android:background="@drawable/button_help" />
         </LinearLayout>
-
     </LinearLayout>
 
 </FrameLayout>
