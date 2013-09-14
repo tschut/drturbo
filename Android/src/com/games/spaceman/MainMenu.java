@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.spacemangames.framework.SpaceGameState;
@@ -66,13 +66,13 @@ public class MainMenu extends Activity {
             setContentView(R.layout.mainmenu_layout);
 
             // add button handlers
-            Button playButton = (Button) findViewById(R.id.button_play);
+            ImageButton playButton = (ImageButton) findViewById(R.id.button_play);
             playButton.setOnClickListener(new PlayButtonClickListener());
 
-            Button listButton = (Button) findViewById(R.id.button_list);
+            ImageButton listButton = (ImageButton) findViewById(R.id.button_list);
             listButton.setOnClickListener(new LevelsButtonClickListener());
 
-            Button helpButton = (Button) findViewById(R.id.button_help);
+            ImageButton helpButton = (ImageButton) findViewById(R.id.button_help);
             helpButton.setOnClickListener(new HelpButtonClickListener());
         } else {
             // we are being restored: restart the app
