@@ -10,29 +10,42 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
         android:padding="5dip" >
 
-        <Button
+        <ImageButton
             android:id="@+id/pause_button_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/button_list"
             android:text="@string/pause_list" />
 
-        <Button
+        <ImageButton
             android:id="@+id/pause_button_continue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/continuebutton"
             android:text="@string/pause_continue" />
 
-        <Button
+        <ImageButton
             android:id="@+id/pause_button_restart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/restartbutton"
             android:text="@string/pause_restart" />
+
     </LinearLayout>
 
 </LinearLayout>
