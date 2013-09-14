@@ -90,26 +90,37 @@
         android:padding="5dip"
         android:orientation="horizontal" >
 
-        <Button
+        <ImageButton
             android:id="@+id/end_level_button_retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="@string/end_level_retry" />
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/retrybutton" />
 
-        <Button
+        <ImageButton
             android:id="@+id/end_level_button_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/end_level_list" />
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/button_list" />
 
-        <Button
+        <ImageButton
             android:id="@+id/end_level_button_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="@string/end_level_next" />
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/nextlevelbutton" />
+
     </LinearLayout>
 
 </LinearLayout>

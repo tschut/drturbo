@@ -7,7 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,11 +70,14 @@ public class EndLevelDialogFragment extends DialogFragment {
         ((TextView) view.findViewById(R.id.end_level_points)).setText(Integer.toString(points));
         ((TextView) view.findViewById(R.id.end_level_points_best)).setText(Integer.toString(best));
 
-        Button next = (Button) view.findViewById(R.id.end_level_button_next);
-        Button list = (Button) view.findViewById(R.id.end_level_button_list);
-        Button retry = (Button) view.findViewById(R.id.end_level_button_retry);
+        ImageButton next = (ImageButton) view.findViewById(R.id.end_level_button_next);
+        ImageButton list = (ImageButton) view.findViewById(R.id.end_level_button_list);
+        ImageButton retry = (ImageButton) view.findViewById(R.id.end_level_button_retry);
 
-        next.setEnabled(nextLevelUnlocked);
+        if (!nextLevelUnlocked) {
+            next.setImageResource(R.drawable.nextlevelbutton_disabled);
+            next.setEnabled(false);
+        }
 
         next.setOnClickListener(new OnNextLevelClickListener());
         list.setOnClickListener(new OnLevelListClickListener());
