@@ -11,6 +11,10 @@
 	<classpathentry exported="true" kind="lib" path="libs/gson-2.2.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/libGoogleAnalytics.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="libs/ouya-sdk.jar"/>
+	<classpathentry kind="lib" path="libs/ouya-sdk.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/Tiemen/Documents/GitHub/drturbo/ouyajavadoc/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
