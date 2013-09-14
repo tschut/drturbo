@@ -1,5 +1,6 @@
 package com.games.spaceman;
 
+import tv.ouya.console.api.OuyaController;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class LoadingActivity extends Activity implements ILoadingDoneListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        OuyaController.init(this);
 
         // Initialize the PALManager stuff
         PALManager.setResourceHandler(new AndroidResourceHandler());
