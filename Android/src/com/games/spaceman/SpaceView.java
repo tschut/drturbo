@@ -100,9 +100,8 @@ class SpaceView extends SurfaceView implements SurfaceHolder.Callback, IInputHan
     }
 
     @Override
+    // TODO Use OuyController class!
     public boolean onGenericMotionEvent(final MotionEvent event) {
-        GameThreadHolder.getThread().mViewport.resetFocusViewportStatus(false);
-
         float x = event.getAxisValue(OuyaController.AXIS_LS_X);
         float y = event.getAxisValue(OuyaController.AXIS_LS_Y);
         if (x * x + y * y < OuyaController.STICK_DEADZONE * OuyaController.STICK_DEADZONE) {

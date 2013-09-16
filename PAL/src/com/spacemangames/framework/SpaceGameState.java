@@ -6,69 +6,64 @@ import com.spacemangames.pal.PALManager;
 /** Singleton class describing the game state */
 public class SpaceGameState {
     public class ChargingState {
-        public static final int   MAX_CHARGING_POWER  = 150;
-        public static final float CHARGING_MULTIPLIER = 5f;
+        public static final int    MAX_CHARGING_POWER  = 150;
+        public static final double CHARGING_MULTIPLIER = 10f;
 
         /** Start of charging gesture */
-        private float             mChargingStartX;
-        private float             mChargingStartY;
+        private float              mChargingStartX;
+        private float              mChargingStartY;
 
         /** Current pos of charging gesture */
-        private float             mChargingPower      = 0;
-        private float             mChargingAngle      = 0;
+        private double             mChargingPower      = 0;
+        private double             mChargingAngle      = 0;
 
-        private Vector2           mSpaceManSpeed;
-        private float             mChargingCurrentX   = 0;
-        private float             mChargingCurrentY   = 0;
+        private Vector2            mSpaceManSpeed;
+        private PointF             mChargingCurrent    = new PointF();
 
         public ChargingState() {
             mSpaceManSpeed = new Vector2(0, 0);
         }
 
-        public float chargingPower() {
+        public double chargingPower() {
             return mChargingPower;
         }
 
         public void setChargingStart(float aX, float aY) {
             mChargingStartX = aX;
             mChargingStartY = aY;
-            mChargingCurrentX = mChargingCurrentY = 0;
+            mChargingCurrent.set(0, 0);
         }
 
-        public boolean setChargingCurrent(float aX, float aY) {
-            boolean updated = true;
-            float lX = aX - mChargingStartX;
-            float lY = aY - mChargingStartY;
+        public void setChargingCurrent(float aX, float aY, PointF result) {
+            double lX = aX - mChargingStartX;
+            double lY = aY - mChargingStartY;
             mChargingPower = calculateChargingPower(lX, lY);
             mChargingAngle = (float) Math.atan2(lX, lY);
             // if length is longer than this we have to recalculate x,y
             // coordinates because we're overcharging
             if (chargingPowerOverMax(mChargingPower)) {
-                updated = false;
                 mChargingPower = MAX_CHARGING_POWER;
             }
 
             // we fire in the opposite direction :)
             lY = -1.0f * (float) Math.cos(mChargingAngle) * mChargingPower;
             lX = -1.0f * (float) Math.sin(mChargingAngle) * mChargingPower;
-            mSpaceManSpeed.set(lX, lY);
+            mSpaceManSpeed.set((float) lX, (float) lY);
             // PALManager.getLog().i (TAG, "Speed: " + lX + " " + lY);
-            return updated;
+            result.x = (float) (-lX / CHARGING_MULTIPLIER);
+            result.y = (float) (-lY / CHARGING_MULTIPLIER);
         }
 
-        private boolean chargingPowerOverMax(float power) {
-            return power > MAX_CHARGING_POWER;
+        private boolean chargingPowerOverMax(double mChargingPower2) {
+            return mChargingPower2 > MAX_CHARGING_POWER;
         }
 
-        private float calculateChargingPower(float lX, float lY) {
+        private float calculateChargingPower(double lX, double lY) {
             return (float) (Math.sqrt(lX * lX + lY * lY) * CHARGING_MULTIPLIER);
         }
 
         public void deltaChargingCurrent(float x, float y) {
-            if (setChargingCurrent(mChargingCurrentX + x, mChargingCurrentY + y)) {
-                mChargingCurrentX += x;
-                mChargingCurrentY += y;
-            }
+            setChargingCurrent(mChargingCurrent.x + x, mChargingCurrent.y + y, mChargingCurrent);
         }
 
         public Vector2 getSpaceManSpeed() {
@@ -76,7 +71,7 @@ public class SpaceGameState {
         }
 
         public float getAngle() {
-            return mChargingAngle;
+            return (float) mChargingAngle;
         }
 
         public void reset() {
