@@ -1,9 +1,13 @@
 package com.games.spaceman;
 
+import tv.ouya.console.api.OuyaController;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +69,36 @@ public class EndLevelDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.end_level_layout, container);
 
         getDialog().setTitle(titleResource);
+
+        getDialog().setOnKeyListener(new OnKeyListener() {
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                boolean handled = false;
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                    case OuyaController.BUTTON_O:
+                        if (nextLevelUnlocked) {
+                            new OnNextLevelClickListener().onClick(null);
+                            handled = true;
+                        }
+                        break;
+                    case OuyaController.BUTTON_A:
+                        new OnRetryClickListener().onClick(null);
+                        handled = true;
+                        break;
+                    case OuyaController.BUTTON_MENU:
+                        new OnLevelListClickListener().onClick(null);
+                        handled = true;
+                        break;
+                    // for some reason we get this keycode and it closes the
+                    // dialog?
+                    case KeyEvent.KEYCODE_DPAD_CENTER:
+                        return true;
+                    }
+                }
+                return handled;
+            }
+        });
+
         ((TextView) view.findViewById(R.id.end_level_subtitle)).setText(textResource);
         ((ImageView) view.findViewById(R.id.end_level_star)).setImageResource(imageResource);
         ((TextView) view.findViewById(R.id.end_level_points)).setText(Integer.toString(points));
