@@ -170,23 +170,20 @@ public class MainMenu extends Activity {
 
     @Override
     public boolean onKeyDown(final int keyCode, KeyEvent event) {
-        boolean handled = false;
-
-        switch (keyCode) {
-        case OuyaController.BUTTON_O:
-            new PlayButtonClickListener().onClick(null);
-            handled = true;
-            break;
-        case OuyaController.BUTTON_MENU:
-            new LevelsButtonClickListener().onClick(null);
-            handled = true;
-            break;
-        case OuyaController.BUTTON_U:
-            new HelpButtonClickListener().onClick(null);
-            handled = true;
-            break;
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+            case OuyaController.BUTTON_O:
+                new PlayButtonClickListener().onClick(null);
+                return true;
+            case OuyaController.BUTTON_MENU:
+                new LevelsButtonClickListener().onClick(null);
+                return true;
+            case OuyaController.BUTTON_U:
+                new HelpButtonClickListener().onClick(null);
+                return true;
+            }
         }
-        return handled || super.onKeyDown(keyCode, event);
+        return super.onKeyDown(keyCode, event);
     }
 
     // if this returns true we should skip the menu and go to the help
